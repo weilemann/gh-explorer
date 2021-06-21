@@ -21,9 +21,8 @@ function List() {
     console.log(repositories)
   }, [repositories])
 
-  async function handleAddRepository() {
-    // eslint-disable-next-line no-restricted-globals
-    event.preventDefault();
+  async function handleAddRepository(e) {
+    e.preventDefault();
 
     try {
       const response = await api.get(`/repos/${newRepo}`);
@@ -44,7 +43,7 @@ function List() {
         <Title>Github Explorer</Title>
       </TitleContainer>
 
-      <form onSubmit={handleAddRepository}>
+      <form onSubmit={e => handleAddRepository(e) } >
         <Input placeholder="Digite o nome do repositório.." 
           onChange={e => setNewRepo(e.target.value) } />
       </form>
